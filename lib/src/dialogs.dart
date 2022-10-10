@@ -31,6 +31,8 @@ Future<DateTime?> showMonthYearPicker({
   TextDirection? textDirection,
   TransitionBuilder? builder,
   MonthYearPickerMode initialMonthYearPickerMode = MonthYearPickerMode.month,
+  TextStyle? titleStyle,
+  Color? headerBackground,
 }) async {
   initialDate = monthYearOnly(initialDate);
   firstDate = monthYearOnly(firstDate);
@@ -58,6 +60,8 @@ Future<DateTime?> showMonthYearPicker({
     lastDate: lastDate,
     initialMonthYearPickerMode: initialMonthYearPickerMode,
     selectableMonthYearPredicate: selectableMonthYearPredicate,
+    titleStyle: titleStyle,
+    headerBackground: headerBackground,
   );
 
   if (textDirection != null) {
@@ -99,6 +103,8 @@ class MonthYearPickerDialog extends StatefulWidget {
     required this.lastDate,
     required this.initialMonthYearPickerMode,
     this.selectableMonthYearPredicate,
+    this.titleStyle,
+    this.headerBackground,
   }) : super(key: key);
 
   // ---------------------------------- FIELDS ---------------------------------
@@ -107,6 +113,8 @@ class MonthYearPickerDialog extends StatefulWidget {
   final DateTime lastDate;
   final MonthYearPickerMode initialMonthYearPickerMode;
   final SelectableMonthYearPredicate? selectableMonthYearPredicate;
+  final TextStyle? titleStyle;
+  final Color? headerBackground;
 
   // --------------------------------- METHODS ---------------------------------
   @override
@@ -194,8 +202,9 @@ class _MonthYearPickerDialogState extends State<MonthYearPickerDialog> {
       helpText: localizations.helpText,
       titleText: dateText,
       titleSemanticsLabel: semanticText,
-      titleStyle: dateStyle,
+      titleStyle: widget.titleStyle ?? dateStyle,
       orientation: orientation,
+      background: widget.headerBackground,
     );
 
     final switcher = Stack(
@@ -261,7 +270,7 @@ class _MonthYearPickerDialogState extends State<MonthYearPickerDialog> {
         final pickerMaxWidth =
             _landscapeDialogSize.width - _datePickerHeaderLandscapeWidth;
         final width = constraints.maxHeight < pickerMaxWidth
-            ? constraints.maxHeight / 3.0 * 4.0
+            ? constraints.maxHeight / 3.0 * 3.5
             : null;
 
         return Stack(
@@ -432,6 +441,7 @@ class _Header extends StatelessWidget {
     this.titleSemanticsLabel,
     required this.titleStyle,
     required this.orientation,
+    this.background,
   }) : super(key: key);
 
   // ---------------------------------- FIELDS ---------------------------------
@@ -440,6 +450,7 @@ class _Header extends StatelessWidget {
   final String? titleSemanticsLabel;
   final TextStyle? titleStyle;
   final Orientation orientation;
+  final Color? background;
 
   // --------------------------------- METHODS ---------------------------------
   @override
@@ -480,7 +491,7 @@ class _Header extends StatelessWidget {
         return SizedBox(
           height: _datePickerHeaderPortraitHeight,
           child: Material(
-            color: primarySurfaceColor,
+            color: background ?? primarySurfaceColor,
             child: Padding(
               padding: const EdgeInsetsDirectional.only(
                 start: 24.0,
@@ -502,7 +513,7 @@ class _Header extends StatelessWidget {
         return SizedBox(
           width: _datePickerHeaderLandscapeWidth,
           child: Material(
-            color: primarySurfaceColor,
+            color: background ?? primarySurfaceColor,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
