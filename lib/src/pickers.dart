@@ -12,8 +12,8 @@ class MonthPicker extends StatefulWidget {
     required this.onMonthSelected,
     required this.onPageChanged,
     this.selectableMonthYearPredicate,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   // ---------------------------------- FIELDS ---------------------------------
   final DateTime firstDate;
@@ -133,8 +133,8 @@ class YearPicker extends StatefulWidget {
     required this.onYearSelected,
     required this.onPageChanged,
     this.selectableMonthYearPredicate,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   // ---------------------------------- FIELDS ---------------------------------
   final DateTime firstDate;
@@ -244,8 +244,8 @@ class _MonthButton extends StatelessWidget {
     required this.selectedDate,
     required this.onMonthSelected,
     this.selectableMonthYearPredicate,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   // ---------------------------------- FIELDS ---------------------------------
   final int page;
@@ -292,8 +292,8 @@ class _YearButton extends StatelessWidget {
     required this.selectedDate,
     required this.onYearSelected,
     this.selectableMonthYearPredicate,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   // ---------------------------------- FIELDS ---------------------------------
   final int page;
@@ -337,8 +337,8 @@ class _Button extends StatelessWidget {
     required this.isHighlighted,
     required this.isSelected,
     required this.onPressed,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   // ---------------------------------- FIELDS ---------------------------------
   final String label;
@@ -362,8 +362,8 @@ class _Button extends StatelessWidget {
       onPressed: isEnabled ? onPressed : null,
       style: TextButton.styleFrom(
         backgroundColor: buttonBackground,
-        primary: buttonText,
-        onSurface: buttonText,
+        foregroundColor: buttonText,
+        surfaceTintColor: buttonText,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(100.0),
         ),

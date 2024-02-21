@@ -97,7 +97,7 @@ enum MonthYearPickerMode {
 class MonthYearPickerDialog extends StatefulWidget {
   // ------------------------------- CONSTRUCTORS ------------------------------
   const MonthYearPickerDialog({
-    Key? key,
+    super.key,
     required this.initialDate,
     required this.firstDate,
     required this.lastDate,
@@ -105,7 +105,7 @@ class MonthYearPickerDialog extends StatefulWidget {
     this.selectableMonthYearPredicate,
     this.titleStyle,
     this.headerBackground,
-  }) : super(key: key);
+  });
 
   // ---------------------------------- FIELDS ---------------------------------
   final DateTime initialDate;
@@ -175,8 +175,8 @@ class _MonthYearPickerDialogState extends State<MonthYearPickerDialog> {
         ? colorScheme.onPrimary
         : colorScheme.onSurface;
     final dateStyle = orientation == Orientation.landscape
-        ? textTheme.headline5?.copyWith(color: onPrimarySurface)
-        : textTheme.headline4?.copyWith(color: onPrimarySurface);
+        ? textTheme.headlineSmall?.copyWith(color: onPrimarySurface)
+        : textTheme.headlineMedium?.copyWith(color: onPrimarySurface);
 
     final Widget actions = Container(
       alignment: AlignmentDirectional.centerEnd,
@@ -217,7 +217,7 @@ class _MonthYearPickerDialogState extends State<MonthYearPickerDialog> {
               8.0,
               24.0,
             ),
-            primary: Theme.of(context).textTheme.caption?.color,
+            foregroundColor: Theme.of(context).textTheme.bodySmall?.color,
           ),
           child: Row(
             children: [
@@ -340,7 +340,7 @@ class _MonthYearPickerDialogState extends State<MonthYearPickerDialog> {
           curve: Curves.easeIn,
           child: MediaQuery(
             data: MediaQuery.of(context).copyWith(
-              textScaleFactor: textScaleFactor,
+              textScaler: TextScaler.linear(textScaleFactor),
             ),
             child: Builder(
               builder: (context) {
@@ -435,14 +435,14 @@ class _MonthYearPickerDialogState extends State<MonthYearPickerDialog> {
 class _Header extends StatelessWidget {
   // ------------------------------- CONSTRUCTORS ------------------------------
   const _Header({
-    Key? key,
+    super.key,
     required this.helpText,
     required this.titleText,
     this.titleSemanticsLabel,
     required this.titleStyle,
     required this.orientation,
     this.background,
-  }) : super(key: key);
+  });
 
   // ---------------------------------- FIELDS ---------------------------------
   final String helpText;
@@ -467,7 +467,7 @@ class _Header extends StatelessWidget {
     final onPrimarySurfaceColor =
         isDark ? colorScheme.onSurface : colorScheme.onPrimary;
 
-    final helpStyle = textTheme.overline?.copyWith(
+    final helpStyle = textTheme.labelSmall?.copyWith(
       color: onPrimarySurfaceColor,
     );
 
