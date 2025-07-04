@@ -244,7 +244,6 @@ class _MonthButton extends StatelessWidget {
     required this.selectedDate,
     required this.onMonthSelected,
     this.selectableMonthYearPredicate,
-    super.key,
   });
 
   // ---------------------------------- FIELDS ---------------------------------
@@ -292,7 +291,6 @@ class _YearButton extends StatelessWidget {
     required this.selectedDate,
     required this.onYearSelected,
     this.selectableMonthYearPredicate,
-    super.key,
   });
 
   // ---------------------------------- FIELDS ---------------------------------
@@ -337,7 +335,6 @@ class _Button extends StatelessWidget {
     required this.isHighlighted,
     required this.isSelected,
     required this.onPressed,
-    super.key,
   });
 
   // ---------------------------------- FIELDS ---------------------------------

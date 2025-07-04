@@ -1,5 +1,3 @@
-import 'dart:math' as math;
-
 import 'package:flutter/material.dart' hide YearPicker;
 
 import 'l10n/month_year_picker_localizations.dart';
@@ -167,7 +165,7 @@ class _MonthYearPickerDialogState extends State<MonthYearPickerDialog> {
     final textTheme = theme.textTheme;
     // Constrain the textScaleFactor to the largest supported value to prevent
     // layout issues.
-    final textScaleFactor = math.min(media.textScaleFactor, 1.3);
+    final textScaleFactor = media.textScaler.scale(1).clamp(0.0, 1.3);
     final direction = Directionality.of(context);
 
     final dateText = materialLocalizations.formatMonthYear(_selectedDate);
@@ -435,7 +433,6 @@ class _MonthYearPickerDialogState extends State<MonthYearPickerDialog> {
 class _Header extends StatelessWidget {
   // ------------------------------- CONSTRUCTORS ------------------------------
   const _Header({
-    super.key,
     required this.helpText,
     required this.titleText,
     this.titleSemanticsLabel,
